@@ -1,0 +1,8 @@
+colormap-registry/=lib/curta/lib/colormap-registry/src/
+curta/=lib/curta/src/
+ds-test/=lib/forge-std/lib/ds-test/src/
+forge-std/=lib/forge-std/src/
+shields-api-contract/=lib/curta/lib/shields-api-contract/contracts/
+shields-api/=lib/curta/lib/shields-api-contract/contracts/
+solady/=lib/curta/lib/solady/src/
+solmate/=lib/curta/lib/solmate/src/
