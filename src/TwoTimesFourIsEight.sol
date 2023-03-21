@@ -39,8 +39,7 @@ contract TwoTimesFourIsEight is IPuzzle {
     ///             |    48 |       1 |       0 |       1 | 0b101 |
     ///             |    52 |       0 |       0 |       1 | 0b001 |
     ///             |    56 |       1 |       0 |       0 | 0b100 |
-    uint256 private constant CHECKS =
-        0x400010005000000040001000500000004000100050000000422232227;
+    uint256 private constant CHECKS = 0x400010005000000040001000500000004000100050000000422232227;
 
     /// @notice A bitpacked value that indicates how many bits to shift by to
     /// get to the next value in the row.
@@ -86,7 +85,7 @@ contract TwoTimesFourIsEight is IPuzzle {
         uint256 index = 64;
         // We fill the puzzle randomly with 1 of [1, ..., 8]. This way, every
         // puzzle is solvable.
-        for (uint256 i = 1; i < 9; ) {
+        for (uint256 i = 1; i < 9;) {
             // We have exhausted the seed, so stop iterating.
             if (seed == 0) break;
 
@@ -113,23 +112,21 @@ contract TwoTimesFourIsEight is IPuzzle {
     }
 
     /// @inheritdoc IPuzzle
-    function verify(uint256 _start, uint256 _solution)
-        external
-        pure
-        returns (bool)
-    {
+    function verify(uint256 _start, uint256 _solution) external pure returns (bool) {
         // Iterate through the puzzle.
-        for (uint256 index; index < 256; ) {
+        for (uint256 index; index < 256;) {
             // Check that the starting position is included in the solution.
-            if (_start & 0xF != 0 && _start & 0xF != _solution & 0xF)
+            if (_start & 0xF != 0 && _start & 0xF != _solution & 0xF) {
                 return false;
+            }
 
             // Retrieve how many checks to perform.
             uint256 checks = (CHECKS >> index) & 7;
             if (checks & 4 == 4 && !check(_solution, ROW_SHIFTS)) return false;
             if (checks & 2 == 2 && !check(_solution, COL_SHIFTS)) return false;
-            if (checks & 1 == 1 && !check(_solution, SUBGRID_SHIFTS))
+            if (checks & 1 == 1 && !check(_solution, SUBGRID_SHIFTS)) {
                 return false;
+            }
 
             _start >>= 4;
             _solution >>= 4;
@@ -147,11 +144,7 @@ contract TwoTimesFourIsEight is IPuzzle {
     /// @param _shifts A bitpacked value that indicates how many bits to shift
     /// by after each iteration in the loop.
     /// @return Whether the check is valid.
-    function check(uint256 _shifted, uint256 _shifts)
-        internal
-        pure
-        returns (bool)
-    {
+    function check(uint256 _shifted, uint256 _shifts) internal pure returns (bool) {
         uint256 shifted = _shifted;
         // Used to keep track of which numbers [1, ..., 8] have been seen.
         uint256 bitmap;

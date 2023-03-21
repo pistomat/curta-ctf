@@ -6,7 +6,6 @@ import {IPuzzle} from "curta/interfaces/IPuzzle.sol";
 /// @title TinySig
 /// @author Riley Holterhus
 contract TinySig is IPuzzle {
-
     // This is the address you get by using the private key 0x1.
     // For this challenge, make sure you do not use *your own* private key
     // (other than to initiate the `solve` transaction of course). You only
@@ -28,13 +27,14 @@ contract TinySig is IPuzzle {
         address target = address(new Deployer(abi.encodePacked(_solution)));
         (, bytes memory ret) = target.staticcall("");
         (bytes32 h, uint8 v, bytes32 r) = abi.decode(ret, (bytes32, uint8, bytes32));
-        return (
-            r < bytes32(uint256(1 << 184)) &&
-            ecrecover(h, v, r, bytes32(_start)) == SIGNER
-        );
+        return (r < bytes32(uint256(1 << 184)) && ecrecover(h, v, r, bytes32(_start)) == SIGNER);
     }
 }
 
 contract Deployer {
-    constructor(bytes memory code) { assembly { return (add(code, 0x20), mload(code)) } }
+    constructor(bytes memory code) {
+        assembly {
+            return(add(code, 0x20), mload(code))
+        }
+    }
 }

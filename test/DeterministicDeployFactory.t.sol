@@ -18,17 +18,11 @@ contract DeterministicDeployFactoryTest is Test {
         console.log("Created factory at", address(factory));
     }
 
-    function getAddress(
-        bytes memory bytecode,
-        uint _salt,
-        address _sender
-    ) public view returns (address) {
-        bytes32 hash = keccak256(
-            abi.encodePacked(bytes1(0xff), _sender, _salt, keccak256(bytecode))
-        );
+    function getAddress(bytes memory bytecode, uint256 _salt, address _sender) public view returns (address) {
+        bytes32 hash = keccak256(abi.encodePacked(bytes1(0xff), _sender, _salt, keccak256(bytecode)));
 
         // NOTE: cast last 20 bytes of hash to address
-        return address(uint160(uint(hash)));
+        return address(uint160(uint256(hash)));
     }
 
     function testCreate2() public {

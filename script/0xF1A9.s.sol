@@ -13,12 +13,10 @@ F1A9 constant PUZZLE = F1A9(0x9f00c43700bc0000Ff91bE00841F8e04c0495000);
 address constant PLAYER = 0xDe0476793ff6BBf931B5FD8586E275B43Be195C2;
 Curta constant CURTA = Curta(0x0000000006bC8D9e5e9d436217B88De704a9F307);
 
-
 contract F1A9Script is Script {
     // F1A9 public PUZZLE;
 
     error PuzzleVerifyFailed();
-
 
     function setUp() public {
         // PUZZLE = new F1A9();

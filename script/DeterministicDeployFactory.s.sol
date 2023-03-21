@@ -7,7 +7,6 @@ import {DeterministicDeployFactory} from "../src/DeterministicDeployFactory.sol"
 address constant PLAYER = 0xDe0476793ff6BBf931B5FD8586E275B43Be195C2;
 
 contract DeterministicDeployFactoryScript is Script {
-
     function run() public {
         uint256 privateKey = vm.envUint("PRIVATE_KEY");
         address deployer = vm.rememberKey(privateKey);
