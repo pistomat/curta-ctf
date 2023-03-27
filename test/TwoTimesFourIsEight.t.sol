@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.17;
 
-import {Test, console2} from "forge-std/Test.sol";
+import {Test} from "forge-std/Test.sol";
 import {IPuzzle} from "curta/interfaces/IPuzzle.sol";
 import {TwoTimesFourIsEight} from "../src/TwoTimesFourIsEight.sol";
 
-contract PuzzleSolver is Test {
+contract TwoTimesFourIsEightSolver is Test {
     IPuzzle puzzle;
 
     // uint256 start;
