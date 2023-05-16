@@ -64,8 +64,8 @@ contract WhatAreBuckets is IPuzzle {
             uint256 prime1 = (PRIMES >> (a << 3)) & 0xff;
             uint256 prime2 = (PRIMES >> (b << 3)) & 0xff;
             if (
-                (prime1 + 1) % prime2 == 0 || (prime2 + 1) % prime1 == 0
-                    || (prime1 - 1) % prime2 == 0 || (prime2 - 1) % prime1 == 0
+                (prime1 + 1) % prime2 == 0 || (prime2 + 1) % prime1 == 0 || (prime1 - 1) % prime2 == 0
+                    || (prime2 - 1) % prime1 == 0
             ) {
                 continue;
             }
@@ -78,7 +78,6 @@ contract WhatAreBuckets is IPuzzle {
 
     /// @inheritdoc IPuzzle
     function verify(uint256 _start, uint256 _solution) external returns (bool) {
-        return
-            workAll(_start, _solution ^ uint256(keccak256(abi.encodePacked(_start)))) & 0xffff == 1;
+        return workAll(_start, _solution ^ uint256(keccak256(abi.encodePacked(_start)))) & 0xffff == 1;
     }
 }

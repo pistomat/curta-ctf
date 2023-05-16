@@ -6,8 +6,7 @@ pragma solidity ^0.8.17;
  * @author wei3erHase
  */
 contract EventHorizon {
-    
-    string constant public name = "Uncertainty Principle";
+    string public constant name = "Uncertainty Principle";
 
     uint256 constant PLANK_CONSTANT = 0x111; // 1 in XYZ
     uint256 constant PLANK_LENGTH = 0xF;

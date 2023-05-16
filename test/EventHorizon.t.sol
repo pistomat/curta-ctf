@@ -5,8 +5,6 @@ import "forge-std/Test.sol";
 import {IPuzzle} from "curta/interfaces/IPuzzle.sol";
 import {ICurta} from "curta/interfaces/ICurta.sol";
 import {EventHorizon} from "../src/EventHorizon.sol";
-import {CURTA_DEPLOYED_CODE} from "./fixtures/Curta_bytecode.sol";
-
 
 contract EventHorizonTest is Test {
     uint32 constant PUZZLE_ID = 6;
@@ -35,7 +33,7 @@ contract EventHorizonTest is Test {
         // // puzzle = new EventHorizon();
         // // vm.label(address(puzzle), "puzzle");
 
-        // // start = puzzle.generate(player); 
+        // // start = puzzle.generate(player);
 
         // // console.log("start: %x", start);
     }
@@ -65,7 +63,7 @@ contract EventHorizonTest is Test {
     // @dev We need to increase PUZZLE_SOLUTION_GAS_LIMIT by the gas used in the Curta contract
     // In my case it was by 43614, I found it out by simulating in Tenderly, because it is easier than with foundry
     function testGenerateCorrectSolution() public {
-        for (uint256 solution = SOLUTION_START; solution < SOLUTION_START + 1000000; ) {
+        for (uint256 solution = SOLUTION_START; solution < SOLUTION_START + 1000000;) {
             vm.expectRevert();
             if (puzzle.verify{gas: CURTA_SOLUTION_GAS_LIMIT}(start, solution)) {
                 console.log("solution: %x", solution);
@@ -80,6 +78,10 @@ contract EventHorizonTest is Test {
 
     // @dev Test we have generated the correct solution using our found gas limit
     function testSolution() public {
-        assertTrue(puzzle.verify{gas: CURTA_SOLUTION_GAS_LIMIT}(start, 0x80000000000000000000000000000000000000000000000000000000000002ed));
+        assertTrue(
+            puzzle.verify{gas: CURTA_SOLUTION_GAS_LIMIT}(
+                start, 0x80000000000000000000000000000000000000000000000000000000000002ed
+            )
+        );
     }
 }
